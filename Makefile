@@ -54,3 +54,16 @@ db_diff:
 	${DOCKER_COMPOSE} exec -u www-data php-fpm bin/console doctrine:migrations:diff --no-interaction
 db_drop:
 	docker compose -f ./docker/docker-compose.yml exec -u www-data php-fpm bin/console doctrine:schema:drop --force
+
+##################
+# Static code analysis
+##################
+
+cs_fix:
+	${DOCKER_COMPOSE_PHP_FPM_EXEC} vendor/bin/php-cs-fixer fix
+
+cs_check:
+	${DOCKER_COMPOSE_PHP_FPM_EXEC} vendor/bin/php-cs-fixer fix --dry-run --diff --ansi -v
+
+phpstan:
+	${DOCKER_COMPOSE_PHP_FPM_EXEC} vendor/bin/phpstan analyse --memory-limit 2G --ansi

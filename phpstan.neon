@@ -1,0 +1,11 @@
+parameters:
+    level: 9
+    fileExtensions:
+        - php
+    paths:
+        - bin/
+        - config/
+        - public/
+        - src/
+        - tests/
+    tmpDir: var/cache/phpstan
