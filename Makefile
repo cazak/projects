@@ -44,6 +44,9 @@ cache:
 	docker compose -f ./docker/docker-compose.yml exec -u www-data php-fpm bin/console cache:clear
 	docker compose -f ./docker/docker-compose.yml exec -u www-data php-fpm bin/console cache:clear --env=test
 
+composer_install:
+	docker compose -f ./docker/docker-compose.yml exec -u www-data php-fpm composer install --no-scripts --prefer-dist
+
 ##################
 # Database
 ##################
