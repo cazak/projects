@@ -9,4 +9,4 @@ make dc_build
 make dc_up
 ```
 
-Предварительно настроить `./.env` и `./docker/.env`
+Предварительно настроить `./.env.local`, `./docker/.env`, `./docker/postgres/.env`

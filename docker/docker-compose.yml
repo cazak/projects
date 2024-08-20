@@ -29,13 +29,15 @@ services:
     build:
       context: ./postgres
     ports:
-      - ${POSTGRES_PORT}:5432
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      - ${PGSQL_PORT}:5432
+    env_file: postgres/.env
     volumes:
-      - db_data:/var/lib/postgresql/data:rw
+      - pgsql:/var/lib/postgresql/data:rw
+    healthcheck:
+      test: /usr/bin/pg_isready
+      interval: 1s
+      timeout: 100s
+      retries: 50
 
 volumes:
-  db_data:
+  pgsql:
