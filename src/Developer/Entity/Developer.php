@@ -77,7 +77,7 @@ class Developer
     public function fireFromProject(Project $project): void
     {
         if (!$this->projects->contains($project)) {
-            throw new DomainException('Разработчик уже уволен с проекта.');
+            throw new DomainException('Разработчик не работает на проекте.');
         }
 
         $this->projects->removeElement($project);
@@ -91,6 +91,10 @@ class Developer
 
     public function changePosition(Position $position): void
     {
+        if ($this->position === $position) {
+            throw new DomainException('Разработчик уже занимает данную позицию.');
+        }
+
         $this->position = $position;
     }
 
