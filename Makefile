@@ -9,6 +9,12 @@ DOCKER_COMPOSE_PHP_FPM_EXEC = ${DOCKER_COMPOSE} exec -u www-data php-fpm
 # Docker compose
 ##################
 
+init:
+	make dc_build
+	make dc_up
+	make composer_install
+	make db_migrate
+
 dc_build:
 	${DOCKER_COMPOSE} build
 
@@ -43,9 +49,10 @@ app_bash:
 cache:
 	docker compose -f ./docker/docker-compose.yml exec -u www-data php-fpm bin/console cache:clear
 	docker compose -f ./docker/docker-compose.yml exec -u www-data php-fpm bin/console cache:clear --env=test
-
 composer_install:
 	docker compose -f ./docker/docker-compose.yml exec -u www-data php-fpm composer install --no-scripts --prefer-dist
+db_migrate:
+	docker compose -f ./docker/docker-compose.yml exec -u www-data php-fpm bin/console doctrine:migrations:migrate
 
 ##################
 # Database
