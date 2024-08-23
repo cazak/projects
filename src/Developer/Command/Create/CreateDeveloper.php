@@ -38,6 +38,7 @@ final readonly class CreateDeveloper
             new Email($command->email),
             new Phone($command->phone),
             Position::from($command->position),
+            $command->age,
         );
 
         $this->repository->add($developer);

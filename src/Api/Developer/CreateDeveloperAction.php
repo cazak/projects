@@ -36,6 +36,7 @@ final readonly class CreateDeveloperAction
             $payload->getStringWithoutSpaces('email'),
             $payload->getStringWithoutSpaces('phone'),
             $payload->getStringWithoutSpaces('position'),
+            $payload->getInt('age'),
         );
 
         $violations = $this->validator->validate($command);

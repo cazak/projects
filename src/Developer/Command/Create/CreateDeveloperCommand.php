@@ -24,5 +24,8 @@ final readonly class CreateDeveloperCommand
         #[Assert\NotBlank]
         #[Assert\Choice(callback: [Position::class, 'casesAtString'])]
         public string $position,
+        #[Assert\NotBlank]
+        #[Assert\Positive]
+        public int $age,
     ) {}
 }

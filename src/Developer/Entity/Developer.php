@@ -35,6 +35,9 @@ class Developer
     #[ORM\Column]
     private Position $position;
 
+    #[ORM\Column]
+    private int $age;
+
     /**
      * @var Collection<int, Project>
      */
@@ -54,12 +57,14 @@ class Developer
         Email $email,
         Phone $phone,
         Position $position,
+        int $age,
     ) {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->phone = $phone;
         $this->position = $position;
+        $this->age = $age;
         $this->projects = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
         $this->updatedAt = new DateTimeImmutable();
@@ -121,6 +126,11 @@ class Developer
     public function getPhone(): Phone
     {
         return $this->phone;
+    }
+
+    public function getAge(): int
+    {
+        return $this->age;
     }
 
     /**
